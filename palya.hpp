@@ -5,17 +5,20 @@
 #include <vector>
 #include <fstream>
 
+using namespace std;
+
 class Palya : public Widget
 {
 protected:
-    std::string _nev;
-    std::vector<int> palyaGorbe;
-    std::vector<std::vector<std::vector<int>>> palyaSzin;
-    std::ifstream beolvas;
+    string _nev;
+    vector<int> palyaGorbe;
+    vector<vector<vector<int>>> palyaSzin;
+    ifstream be;
 public:
-    Palya(std::string nev);
+    Palya(Application* parent, int x, int y, int sx, int sy, string nev);
     void gorbeSzamol();
-    void beolvasas(std::string beNev);
+    void beolvasas(ifstream &be);
+    vector<int> getGorbe();
 
     virtual void draw();
     virtual void handle(genv::event ev);
