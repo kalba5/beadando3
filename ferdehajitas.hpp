@@ -1,8 +1,9 @@
 #ifndef FERDEHAJITAS_HPP
 #define FERDEHAJITAS_HPP
 
+#include "widget.hpp"
 
-class FerdeHajitas
+class FerdeHajitas : public Widget
 {
 public:
     FerdeHajitas();
