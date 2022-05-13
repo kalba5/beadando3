@@ -4,9 +4,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
-//#include "palya.hpp"
 
-//class Palya;
 class Widget;                                   //jelezzuk, hogy majd kesobb lesz egy class Widget
 class Application
 {
@@ -15,11 +13,15 @@ protected:
     std::ofstream kifajl;                       //menteshez kellett
     //Palya* map;
     void draw_background();
+    int* actualPlayer;
+    void changePlayer();
 public:
     Application(int, int);                      //konstruktor a hatter mereteinek
     void register_widget(Widget*);              //bele pusholja a widgeteket a widget vektorba
-    void event_loop(int);
-    virtual void action(std::string) = 0;
+    void event_loop();
+    //virtual void action(std::string) = 0;
+
+
 };
 
 #endif // APPLICATION_HPP

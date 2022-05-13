@@ -1,19 +1,21 @@
+/*
 #include "palya.hpp"
 
-Palya::Palya(string nev): _nev(nev)
+using namespace genv;
+
+Palya::Palya(Application* parent, int x, int y, int sx, int sy):Widget(parent, 0,0,0,0)
 {
-    be.open(_nev);
 }
 
-void Palya::beolvasas(ifstream &be)
+void Palya::draw()
 {
-    cout << "be.good:" << be.good() << endl;
+    gout << move_to(0,0) << color(0,255,255) << box(1000,600)
+         << move_to(0, 600) << color(96,56,19) << box(1000, 100);
 }
-
 
 
 
 void Palya::handle(genv::event ev)
 {
-
 }
+*/

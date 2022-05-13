@@ -3,7 +3,6 @@
 
 //#include "graphics.hpp"
 #include "graphics.hpp"
-#include "application.hpp"
 #include "palya.hpp"
 #include "ferdehajitas.hpp"
 #include "widget.hpp"
@@ -17,13 +16,12 @@
 
 class JatekVezerlo
 {
-    Palya* palya1;
-    int soronJatekos;
-    int sor_jatekos();;
+    int* esemeny;
 public:
     JatekVezerlo();
     void run();
     void event_loop();
+    int sor_jatekos();
 };
 
 #endif // JATEKVEZERLO_HPP

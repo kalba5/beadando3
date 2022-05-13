@@ -5,73 +5,49 @@ using namespace std;
 using namespace genv;
 
 
+
 JatekVezerlo::JatekVezerlo()
 {
-    palya1 = new Palya("asd");
-    soronJatekos = 1;
 }
 
-class Jatek: public Application
+class MyApp: public Application
 {
 private:
     Szambeallit* ang1;
     Szambeallit* vel1;
-    LegorduloLista* lista1;
-    PushButton* loves1;
-    vector<string> list1 = {"Baszogep", "pancelkuro" , "elkapmegbasz"};
+    LegorduloLista* list1;
+    PushButton* button1;
 
-    Szambeallit* ang2;
-    Szambeallit* vel2;
-    LegorduloLista* lista2;
-    PushButton* loves2;
+
+    vector<string> cars = {"audi", "bmw", "mercedes", "porsche", "ferrari"};
 public:
-    Jatek(int width, int height): Application(width, height)
+    MyApp(int width, int height): Application(width, height)
     {
-        ang1 = new Szambeallit(this, 40, 40, 50, 35, -10, 10);
-        vel1 = new Szambeallit(this, 100, 40, 50, 35, -10, 10);
-        lista1 = new LegorduloLista(this, 40, 150, 200, 40, 4, list1);
-        loves1 = new PushButton(this, 160, 40, 50, 35, "fire", [this](){loves();});
+        ang1 = new Szambeallit(this, 40, 30, 60, 40, 0, 100);
+        vel1 = new Szambeallit(this, 120, 30, 60, 40, 0, 100);
+        button1 = new PushButton(this, 200, 30, 60, 40, "fire", [this](){changePlayer();});
+        list1 = new LegorduloLista(this, 40, 100, 200, 40, 3, cars);
 
-        ang2 = new Szambeallit(this, 740, 40, 50, 35, -10, 10);
-        vel2 = new Szambeallit(this, 800, 40, 50, 35, -10, 10);
-        lista2 = new LegorduloLista(this, 740, 150, 200, 40, 4, list1);
-        loves2 = new PushButton(this, 860, 40, 50, 35, "fire", [this](){loves();});
+        ang1 = new Szambeallit(this, 740, 30, 60, 40, 0, 100);
+        vel1 = new Szambeallit(this, 820, 30, 60, 40, 0, 100);
+        button1 = new PushButton(this, 900, 30, 60, 40, "fire", [this](){changePlayer();});
+        list1 = new LegorduloLista(this, 740, 100, 200, 40, 3, cars);
     }
 
-    void action(string id)
+    int aktualisJatekos()
     {
+        return *actualPlayer;
     }
 
-    void loves()
+    void changePlayer()
     {
-        //meghivja a ferdehajitas szamolot
-        //valahogy kirajzolja a ferdehajitas animaciot
-        //eldonti h volt-e talalat, ha igen akkor atallitja hp-t
-        //soronJatekos *= -1;
+        *actualPlayer = *actualPlayer * (-1);
     }
-
 };
-
-
-int JatekVezerlo::sor_jatekos()
-{
-    return soronJatekos;
-}
 
 void JatekVezerlo::run()
 {
-
+    MyApp* app;
+    app = new MyApp(1000,700);
+    app->event_loop();
 }
-
-
-
-void JatekVezerlo::event_loop()
-{
-    //palya1->draw();
-    Jatek _jatek(1000,700);
-
-    _jatek.event_loop(soronJatekos);
-
-    cout << "itt vagyok!!!!" << endl;
-}
-

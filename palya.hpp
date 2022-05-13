@@ -1,4 +1,4 @@
-#ifndef PALYA_HPP
+/**#ifndef PALYA_HPP
 #define PALYA_HPP
 
 #include "graphics.hpp"
@@ -8,21 +8,13 @@
 
 using namespace std;
 
-class Palya
+class Palya: public Widget
 {
-protected:
-    string _nev;
-    vector<int> palyaGorbe;
-    vector<vector<vector<int>>> palyaSzin;
-    ifstream be;
 public:
-    Palya(string nev);
-    void gorbeSzamol();
-    void beolvasas(ifstream &be);
-    vector<int> getGorbe();
+    Palya(Application* parent, int,int,int,int);
 
     void draw();
     void handle(genv::event ev);
 };
 
-#endif // PALYA_HPP
+#endif // PALYA_HPP*/

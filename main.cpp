@@ -3,6 +3,7 @@
 #include "widget.hpp"
 #include "szambeallit.hpp"
 #include "pushbutton.hpp"
+#include "palya.hpp"
 #include "legordulolista.hpp"
 #include <iostream>
 #include <vector>
@@ -11,14 +12,15 @@
 using namespace std;
 using namespace genv;
 
-class App: public JatekVezerlo
+class jatekk: public JatekVezerlo
 {
+
 };
 
 
 int main()
 {
-    App a;
-    a.event_loop();
+    jatekk a;
+    a.run();
     return 0;
 }

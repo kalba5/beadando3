@@ -1,20 +1,26 @@
 #include "application.hpp"
 #include "graphics.hpp"
 #include "widget.hpp"
-#include "iostream"
+#include <iostream>
 
 using namespace genv;
 
 Application::Application(int width, int height)
 {
     gout.open(width, height);
-    kifajl.open("mentes.txt");
-    //map = new Palya(palyaNev);
+    actualPlayer = new int(-1);
 }
 void Application::register_widget(Widget* widget)
 {
     widgets.push_back(widget);
 }
+
+void Application::changePlayer()
+{
+    *actualPlayer = *actualPlayer *  (-1);
+
+}
+
 
 void Application::draw_background()
 {
@@ -22,11 +28,12 @@ void Application::draw_background()
          << move_to(0, 600) << color(96,56,19) << box(1000, 100);
 }
 
-void Application::event_loop(int soronJatekos) {
+void Application::event_loop() {
     event ev;
     int focus = -1;
     while(gin >> ev && ev.keycode != key_escape)
     {
+        std::cout << "actualPlayer" << *actualPlayer << std::endl;
         //map->draw();            //kirajzolja a palyat
         if (ev.type == ev_mouse && ev.button == btn_left)
         {
@@ -34,12 +41,12 @@ void Application::event_loop(int soronJatekos) {
             {
                 if (widgets[i]->is_selected(ev.pos_x, ev.pos_y))
                 {
-                    if(soronJatekos == -1 && i >= 0 && i <= 3)
+                    if(*actualPlayer == -1 && i >= 0 && i <= 3)
                     {
                         focus = i;
                         widgets[i]->setColorSelected();
                     }
-                    else if(soronJatekos == 1 && i >= 4 && i <= 7)
+                    else if(*actualPlayer == 1 && i >= 4 && i <= 7)
                     {
                         focus = i;
                         widgets[i]->setColorSelected();
@@ -47,10 +54,10 @@ void Application::event_loop(int soronJatekos) {
                 }
             }
         }
-        else if (ev.type == ev_key && ev.keycode == key_enter)
+        /*else if (ev.type == ev_key && ev.keycode == key_enter)
         {
             action("mentes");
-        }
+        }*/
 
         if (focus != -1)
         {
