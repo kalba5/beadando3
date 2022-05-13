@@ -9,9 +9,10 @@ class FerdeHajitas : public Palya
 protected:
     int _x, _y, _vel, _ang, _category;
     vector<vector<int>> lovedekGorbe;
+    string _nev;
 
 public:
-    FerdeHajitas(int x, int y, int vel, int ang, int category);
+    FerdeHajitas(string nev, int x, int y, int vel, int ang, int category);
 
 
     virtual void draw();

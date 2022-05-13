@@ -4,28 +4,46 @@
 #include "iostream"
 
 using namespace genv;
+
 Application::Application(int width, int height)
 {
     gout.open(width, height);
     kifajl.open("mentes.txt");
+    //map = new Palya(palyaNev);
 }
 void Application::register_widget(Widget* widget)
 {
     widgets.push_back(widget);
 }
-void Application::event_loop() {
+
+void Application::draw_background()
+{
+    gout << move_to(0,0) << color(0,255,255) << box(1000,600)
+         << move_to(0, 600) << color(96,56,19) << box(1000, 100);
+}
+
+void Application::event_loop(int soronJatekos) {
     event ev;
     int focus = -1;
     while(gin >> ev && ev.keycode != key_escape)
     {
+        //map->draw();            //kirajzolja a palyat
         if (ev.type == ev_mouse && ev.button == btn_left)
         {
             for (size_t i=0; i < widgets.size(); i++)
             {
                 if (widgets[i]->is_selected(ev.pos_x, ev.pos_y))
                 {
+                    if(soronJatekos == -1 && i >= 0 && i <= 3)
+                    {
                         focus = i;
                         widgets[i]->setColorSelected();
+                    }
+                    else if(soronJatekos == 1 && i >= 4 && i <= 7)
+                    {
+                        focus = i;
+                        widgets[i]->setColorSelected();
+                    }
                 }
             }
         }
@@ -66,7 +84,7 @@ void Application::event_loop() {
             }
         }
 
-        gout << color(0,0,0) << move_to(0,0) << box(600,600);       //hatter kirajzolas
+        this->draw_background();
 
         for (Widget* w : widgets)                           //kirajzolja a widgeteket
         {
