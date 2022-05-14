@@ -33,8 +33,7 @@ void Application::event_loop() {
     int focus = -1;
     while(gin >> ev && ev.keycode != key_escape)
     {
-        std::cout << "actualPlayer" << *actualPlayer << std::endl;
-        //map->draw();            //kirajzolja a palyat
+        std::cout << "actualPlayer" << *actualPlayer << std::endl;      ///delete
         if (ev.type == ev_mouse && ev.button == btn_left)
         {
             for (size_t i=0; i < widgets.size(); i++)

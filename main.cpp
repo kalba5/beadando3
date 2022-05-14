@@ -12,7 +12,7 @@
 using namespace std;
 using namespace genv;
 
-class jatekk: public JatekVezerlo
+class Jatek: public JatekVezerlo
 {
 
 };
@@ -20,7 +20,8 @@ class jatekk: public JatekVezerlo
 
 int main()
 {
-    jatekk a;
+
+    Jatek a;
     a.run();
     return 0;
 }

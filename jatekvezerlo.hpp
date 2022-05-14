@@ -9,6 +9,7 @@
 #include "szambeallit.hpp"
 #include "pushbutton.hpp"
 #include "legordulolista.hpp"
+#include "tank.hpp"
 #include <iostream>
 #include <vector>
 #include <fstream>

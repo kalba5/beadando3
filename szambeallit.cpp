@@ -4,8 +4,8 @@
 #include <sstream>
 
 using namespace genv;
-Szambeallit::Szambeallit(Application* parent,  int x, int y, int sx, int sy, int lL, int uL)        //lL: lowerLimit, uL: upperLimit
-    :Widget(parent, x, y, sx, sy)
+Szambeallit::Szambeallit(Application* parent,  int x, int y, int sx, int sy, int lL, int uL, std::string felirat)        //lL: lowerLimit, uL: upperLimit
+    :Widget(parent, x, y, sx, sy), _felirat(felirat)
 {
     if (lL <= 0 && uL >= 0)
     {
@@ -29,6 +29,7 @@ Szambeallit::Szambeallit(Application* parent,  int x, int y, int sx, int sy, int
 
 void Szambeallit::draw()
 {
+    gout << move_to(_x, _y-10) << color(0,0,0) << text(_felirat);
     gout << move_to(_x, _y) << color(rFrame,gFrame,bFrame) << box(_size_x, _size_y);                //keret
     gout << move_to(_x+2, _y+2) << color(255,255,255) << box(_size_x-4, _size_y-4);                 //hatter
     gout << color(rEgerFel, gEgerFel, bEgerFel) << move_to(_x+_size_x-22,_y+2) << box(20,(_size_y/2) -2);          //fel gomb hatter
