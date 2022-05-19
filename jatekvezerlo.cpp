@@ -18,6 +18,7 @@ private:
     Szambeallit* vel1;
     LegorduloLista* list1;
     PushButton* button1;
+    ProgressBar* hp1;
     Tank* tank1;
     Tank* tank2;
 
@@ -34,12 +35,13 @@ public:
     {
         ang1 = new Szambeallit(this, 40, 30, 60, 40, 0, 90, "Angle", [this](){csoXY(ang1, tank1);} );
         vel1 = new Szambeallit(this, 120, 30, 60, 40, 0, 100, "Velocity", [this](){});
-        button1 = new PushButton(this, 200, 30, 60, 40, "fire", [this](){changePlayer();});
+        button1 = new PushButton(this, 200, 30, 60, 40, "fire", [this](){fire();});
         list1 = new LegorduloLista(this, 40, 100, 200, 40, 3, lovedekek);
+        hp1 = new ProgressBar(this, 500, 250, 200, 20);
 
         ang2 = new Szambeallit(this, 740, 30, 60, 40, 0, 90, "Angle", [this](){});
         vel2 = new Szambeallit(this, 820, 30, 60, 40, 0, 100, "Velocity", [this](){});
-        button2 = new PushButton(this, 900, 30, 60, 40, "fire", [this](){changePlayer();});
+        button2 = new PushButton(this, 900, 30, 60, 40, "fire", [this](){fire();});
         list2 = new LegorduloLista(this, 740, 100, 200, 40, 3, lovedekek);
 
         tank1 = new Tank(this, 30,537,0,0, "tank_design3_bal.kep");
@@ -52,7 +54,7 @@ public:
         return *actualPlayer;
     }
 
-    void changePlayer()
+    void fire()
     {
         *actualPlayer = *actualPlayer * (-1);
     }
@@ -60,8 +62,8 @@ public:
     void csoXY(Szambeallit* sz, Tank* ta)
     {
         int x_, y_;
-        x_ = cos(sz->getValue() * M_PI /180) * 50;
-        y_ = sin(sz->getValue() * M_PI /180) * -50;
+        x_ = cos(sz->getValue() * M_PI /180) * 75;
+        y_ = sin(sz->getValue() * M_PI /180) * -75;
 
         ta->setCso(x_, y_);
         cout << "pi itt:" << M_PI << endl;

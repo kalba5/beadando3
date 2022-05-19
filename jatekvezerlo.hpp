@@ -14,6 +14,7 @@
 #include <vector>
 #include <fstream>
 #include <math.h>
+#include "progressbar.hpp"
 
 
 class JatekVezerlo

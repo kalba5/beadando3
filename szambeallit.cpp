@@ -164,6 +164,7 @@ void Szambeallit::handle(event ev)
         {
             _value++;
         }
+        action();
     }
     else if (ev.type == ev_key && ev.keycode == 81)       //LE NYIL BILLENTYUGOMB
     {
@@ -180,6 +181,7 @@ void Szambeallit::handle(event ev)
         {
             _value--;
         }
+        action();
     }
     else if (ev.type == ev_key && ev.keycode == 75)       //PAGEUP BILLENTYUGOMB
     {
@@ -196,6 +198,7 @@ void Szambeallit::handle(event ev)
         {
             _value = _value+10;
         }
+        action();
     }
     else if (ev.type == ev_key && ev.keycode == 78)       //PAGEDOWN BILLENTYUGOMB
     {
@@ -212,6 +215,7 @@ void Szambeallit::handle(event ev)
         {
             _value = _value-10;
         }
+        action();
     }
 }
 

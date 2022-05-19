@@ -12,6 +12,7 @@ class Tank: public Widget
     ifstream befajl;
     int magassag, szelesseg;
     int _csoX, _csoY;
+    int _hp;
 public:
     Tank(Application* parent, int x, int y, int sx, int sy, string nev);
     bool talalat(int kx, int ky, int kr);

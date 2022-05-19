@@ -7,6 +7,9 @@ Tank::Tank(Application* parent, int x, int y, int sx, int sy, string nev): Widge
     befajl.open(nev);
     kep=vector<vector<vector<int>>>(magassag,vector<vector<int>> (szelesseg,vector<int>(3)));
     beolvas(befajl);
+    _hp=100;
+    _csoX = 75;
+    _csoY = 0;
 }
 
 
@@ -39,6 +42,17 @@ void Tank::draw()
 
     gout << stamp(c_tank, _x, _y);
     //cout << "cso_x:" << _csoX << "    cso_y:" << _csoY << endl;
+
+
+    for (int i=0; i<15; i++)
+    {
+        gout << color(255,0,0) << move_to(85+i, 546) << line(_csoX, _csoY);
+    }
+    /*int tmpY = _csoY-10;
+    for (int i=0; i<15; i++)
+    {
+        gout << color(255,0,0) << move_to(90, 541+i) << line(_csoX, _csoY+i);
+    }*/
 }
 
 

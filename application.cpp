@@ -90,11 +90,22 @@ void Application::event_loop() {
             }
         }
 
-        this->draw_background();
+        draw_background();                                  //kirajzolja a hatteret
 
         for (Widget* w : widgets)                           //kirajzolja a widgeteket
         {
             w->draw();
+        }
+
+        if(*actualPlayer == 1)
+        {
+            gout << move_to(420,30) << color(255,0,0) << box(160,30);
+            gout << move_to(428,50) << color(0,0,255) << text("Player two's turn!");
+        }
+        else if(*actualPlayer == -1)
+        {
+            gout << move_to(420,30) << color(0,0,255) << box(160,30);
+            gout << move_to(428,50) << color(255,0,0) << text("Player one's turn!");
         }
 
         gout << refresh;
