@@ -9,15 +9,13 @@ using namespace std;
 class Tank: public Widget
 {
     vector<vector<vector<int>>> kep;
-    vector<int> hitbox;
     ifstream befajl;
     int magassag, szelesseg;
-
 public:
     Tank(Application* parent, int x, int y, int sx, int sy, string nev);
-
-    vector<int> get_hitbox();
-    void beolvas(ifstream& befajl);
+    bool talalat(int kx, int ky, int kr);
+    void setAngle(int);
+    virtual void beolvas(ifstream& befajl);
     virtual void draw();
     virtual void handle(genv::event ev);
 

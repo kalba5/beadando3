@@ -11,7 +11,6 @@ class Application
 protected:
     std::vector<Widget*> widgets;               //egy Widget* tipusu vector amiben eltaroljuk a hasznalt widgeteket
     std::ofstream kifajl;                       //menteshez kellett
-    //Palya* map;
     void draw_background();
     int* actualPlayer;
     void changePlayer();

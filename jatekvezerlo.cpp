@@ -21,22 +21,24 @@ private:
     Tank* tank2;
 
 
-    vector<string> cars = {"audi", "bmw", "mercedes", "porsche", "ferrari"};
+    vector<string> lovedekek = {"kicsi", "kozepes", "nagy"};
+    //FerdeHajitas* ferdeha = new FerdeHajitas(this,1,1,1,1,1);
 public:
     MyApp(int width, int height): Application(width, height)
     {
-        ang1 = new Szambeallit(this, 40, 30, 60, 40, 0, 90, "Angle");
-        vel1 = new Szambeallit(this, 120, 30, 60, 40, 0, 100, "Velocity");
+        ang1 = new Szambeallit(this, 40, 30, 60, 40, 0, 90, "Angle", [this](){});
+        vel1 = new Szambeallit(this, 120, 30, 60, 40, 0, 100, "Velocity", [this](){});
         button1 = new PushButton(this, 200, 30, 60, 40, "fire", [this](){changePlayer();});
-        list1 = new LegorduloLista(this, 40, 100, 200, 40, 3, cars);
+        list1 = new LegorduloLista(this, 40, 100, 200, 40, 3, lovedekek);
 
-        ang1 = new Szambeallit(this, 740, 30, 60, 40, 0, 90, "Angle");
-        vel1 = new Szambeallit(this, 820, 30, 60, 40, 0, 100, "Velocity");
+        ang1 = new Szambeallit(this, 740, 30, 60, 40, 0, 90, "Angle", [this](){});
+        vel1 = new Szambeallit(this, 820, 30, 60, 40, 0, 100, "Velocity", [this](){});
         button1 = new PushButton(this, 900, 30, 60, 40, "fire", [this](){changePlayer();});
-        list1 = new LegorduloLista(this, 740, 100, 200, 40, 3, cars);
+        list1 = new LegorduloLista(this, 740, 100, 200, 40, 3, lovedekek);
 
-        tank1 = new Tank(this, 30,537,0,0, "tank_design3_jobb.kep");
-        //tank2 = new Tank(this, 850,537,0,0, "tank_design3_jobb.kep");
+        tank1 = new Tank(this, 30,537,0,0, "tank_design3_bal.kep");
+        //tank1 = new Tank(this, 850,537,0,0, "tank_design3_jobb.kep");
+        //ferdeha = new FerdeHajitas(this,1,1,1,1,1);
     }
 
     int aktualisJatekos()

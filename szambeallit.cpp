@@ -1,10 +1,11 @@
 #include "szambeallit.hpp"
-#include "graphics.hpp"
 #include "iostream"
 #include <sstream>
 
 using namespace genv;
-Szambeallit::Szambeallit(Application* parent,  int x, int y, int sx, int sy, int lL, int uL, std::string felirat)        //lL: lowerLimit, uL: upperLimit
+Szambeallit::Szambeallit(Application* parent,  int x, int y, int sx, int sy, int lL, int uL,
+                         std::string felirat, std::function<void()> f)
+    //lL: lowerLimit, uL: upperLimit
     :Widget(parent, x, y, sx, sy), _felirat(felirat)
 {
     if (lL <= 0 && uL >= 0)
@@ -72,6 +73,11 @@ int Szambeallit::getValue()
     return _value;
 }
 
+void Szambeallit::action()
+{
+    _f();
+}
+
 void Szambeallit::handle(event ev)
 {
     //gomb kezeles
@@ -119,6 +125,8 @@ void Szambeallit::handle(event ev)
         {
             _value++;
         }
+
+        action();
     }
     else if (gombFolott(ev.pos_x,ev.pos_y)==2 && ev.button == btn_left)     //LE GOMB
     {
@@ -136,6 +144,8 @@ void Szambeallit::handle(event ev)
         {
             _value--;
         }
+
+        action();
     }
 
 

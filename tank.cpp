@@ -7,7 +7,6 @@ Tank::Tank(Application* parent, int x, int y, int sx, int sy, string nev): Widge
     befajl.open(nev);
     kep=vector<vector<vector<int>>>(magassag,vector<vector<int>> (szelesseg,vector<int>(3)));
     beolvas(befajl);
-
 }
 
 
@@ -40,6 +39,20 @@ void Tank::draw()
 
     gout << stamp(c_tank, _x, _y);
 }
+
+
+bool Tank::talalat(int kx, int ky, int kr)
+{
+    if(kx-kr <= _x+szelesseg && ky+kr >= _y)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 
 void Tank::handle(genv::event ev)
 {
