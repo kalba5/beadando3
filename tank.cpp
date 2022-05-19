@@ -38,6 +38,7 @@ void Tank::draw()
     }
 
     gout << stamp(c_tank, _x, _y);
+    //cout << "cso_x:" << _csoX << "    cso_y:" << _csoY << endl;
 }
 
 
@@ -53,8 +54,13 @@ bool Tank::talalat(int kx, int ky, int kr)
     }
 }
 
+void Tank::setCso(int csoX, int csoY)
+{
+    _csoX = csoX;
+    _csoY = csoY;
+}
+
 
 void Tank::handle(genv::event ev)
 {
-
 }

@@ -11,10 +11,11 @@ class Tank: public Widget
     vector<vector<vector<int>>> kep;
     ifstream befajl;
     int magassag, szelesseg;
+    int _csoX, _csoY;
 public:
     Tank(Application* parent, int x, int y, int sx, int sy, string nev);
     bool talalat(int kx, int ky, int kr);
-    void setAngle(int);
+    void setCso(int csoX, int csoY);
     virtual void beolvas(ifstream& befajl);
     virtual void draw();
     virtual void handle(genv::event ev);

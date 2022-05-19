@@ -13,6 +13,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <math.h>
 
 
 class JatekVezerlo

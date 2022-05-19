@@ -6,7 +6,7 @@ using namespace genv;
 Szambeallit::Szambeallit(Application* parent,  int x, int y, int sx, int sy, int lL, int uL,
                          std::string felirat, std::function<void()> f)
     //lL: lowerLimit, uL: upperLimit
-    :Widget(parent, x, y, sx, sy), _felirat(felirat)
+    :Widget(parent, x, y, sx, sy), _felirat(felirat), _f(f)
 {
     if (lL <= 0 && uL >= 0)
     {
