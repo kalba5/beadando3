@@ -46,7 +46,7 @@ void Tank::draw()
 
     for (int i=0; i<15; i++)
     {
-        gout << color(255,0,0) << move_to(85+i, 546) << line(_csoX, _csoY);
+        gout << color(115, 112, 92) << move_to(85+i, 546) << line(_csoX, _csoY);
     }
     /*int tmpY = _csoY-10;
     for (int i=0; i<15; i++)
