@@ -5,6 +5,11 @@
 #include <fstream>
 #include <iostream>
 
+struct Koord
+{
+    int _ax, _ay;
+};
+
 class Widget;                                   //jelezzuk, hogy majd kesobb lesz egy class Widget
 class Application
 {

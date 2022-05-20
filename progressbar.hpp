@@ -12,7 +12,7 @@ public:
     ProgressBar(Application* parent, int x, int y, int sx, int sy, std::string txt);
 
     int getPercent();
-    void setPercent(int vl);
+    void setPercent(int pr);
     virtual void draw();
     virtual void handle(genv::event ev);
 };

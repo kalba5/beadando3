@@ -9,12 +9,13 @@ using namespace std;
 class FerdeHajitas : Widget
 {
 protected:
-    int _x, _y, _vel, _ang, _category;
-    vector<vector<int>> lovedekGorbe;
-    string _nev;
+    int _category, _id;
+
+    Koord kk;
+    vector<Koord> _koordVector;
 
 public:
-    FerdeHajitas(Application* parent, int x, int y, int vel, int ang, int category);
+    FerdeHajitas(Application* parent, int x, int y, int sx, int sy, int category, int id, vector<Koord> koordVector);
 
 
     virtual void draw();

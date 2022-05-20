@@ -10,11 +10,13 @@
 #include "pushbutton.hpp"
 #include "legordulolista.hpp"
 #include "tank.hpp"
+#include "tank2.hpp"
+#include "progressbar.hpp"
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <math.h>
-#include "progressbar.hpp"
+
 
 
 class JatekVezerlo

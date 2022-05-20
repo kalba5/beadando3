@@ -33,7 +33,7 @@ void Application::event_loop() {
     int focus = -1;
     while(gin >> ev && ev.keycode != key_escape)
     {
-        std::cout << "actualPlayer:" << *actualPlayer << std::endl;      ///deleteme
+        //std::cout << "actualPlayer:" << *actualPlayer << std::endl;      ///deleteme
         if (ev.type == ev_mouse && ev.button == btn_left)
         {
             for (size_t i=0; i < widgets.size(); i++)
@@ -44,13 +44,13 @@ void Application::event_loop() {
                     {
                         focus = i;
                         widgets[i]->setColorSelected();
-                        std::cout << "focus bent player1-nel: " << focus << std::endl;
+                        //std::cout << "focus bent player1-nel: " << focus << std::endl;
                     }
                     else if(*actualPlayer == 1 && i >= 5 && i <= 8)
                     {
                         focus = i;
                         widgets[i]->setColorSelected();
-                        std::cout << "focus bent player2-nel: " << focus << std::endl;
+                        //std::cout << "focus bent player2-nel: " << focus << std::endl;
                     }
                 }
             }
