@@ -4,7 +4,6 @@
 #include "szambeallit.hpp"
 #include "pushbutton.hpp"
 #include "palya.hpp"
-#include "legordulolista.hpp"
 #include <iostream>
 #include <vector>
 #include <fstream>

@@ -19,6 +19,8 @@ protected:
     void draw_background();
     int* actualPlayer;
     void changePlayer();
+    bool _gameover;
+    std::string gyoztes;
 public:
     Application(int, int);                      //konstruktor a hatter mereteinek
     void register_widget(Widget*);              //bele pusholja a widgeteket a widget vektorba

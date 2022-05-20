@@ -18,39 +18,32 @@ class MyApp: public Application
 private:
     Szambeallit* ang1;
     Szambeallit* vel1;
-    LegorduloLista* list1;
     PushButton* button1;
     ProgressBar* hp1;
 
 
     Szambeallit* ang2;
     Szambeallit* vel2;
-    LegorduloLista* list2;
     PushButton* button2;
     ProgressBar* hp2;
 
     Tank* tank1;
     Tank2* tank2;
 
-
-
     Koord kk;
     vector<Koord> koordinatak;
-    vector<string> lovedekek = {"kicsi", "kozepes", "nagy"};
     FerdeHajitas* fh1;
 public:
     MyApp(int width, int height): Application(width, height)
     {
         ang1 = new Szambeallit(this, 40, 90, 60, 40, 0, 90, "Angle", [this](){csoXY(ang1, tank1);} );
-        vel1 = new Szambeallit(this, 120, 90, 60, 40, 0, 100, "Velocity", [this](){});
-        button1 = new PushButton(this, 200, 90, 60, 40, "fire", [this](){fire(ang1, vel1, 1);});
-        list1 = new LegorduloLista(this, 40, 160, 200, 40, 3, lovedekek);
+        vel1 = new Szambeallit(this, 120, 90, 60, 40, 10, 100, "Velocity", [this](){});
+        button1 = new PushButton(this, 200, 90, 60, 40, "fire", [this](){fire(ang1, vel1, 1); talalt1();});
         hp1 = new ProgressBar(this, 40, 30, 200, 20, "Heal points:");
 
         ang2 = new Szambeallit(this, 740, 90, 60, 40, 0, 90, "Angle", [this](){csoXY2(ang2, tank2);});
-        vel2 = new Szambeallit(this, 820, 90, 60, 40, 0, 100, "Velocity", [this](){});
-        button2 = new PushButton(this, 900, 90, 60, 40, "fire", [this](){fire(ang2, vel2, 2);});
-        list2 = new LegorduloLista(this, 740, 160, 200, 40, 3, lovedekek);
+        vel2 = new Szambeallit(this, 820, 90, 60, 40, 10, 100, "Velocity", [this](){});
+        button2 = new PushButton(this, 900, 90, 60, 40, "fire", [this](){fire(ang2, vel2, 2); talalt2();});
         hp2 = new ProgressBar(this, 740, 30, 200, 20, "Heal points:");
 
         tank1 = new Tank(this, 30,537,0,0, "tank_design3_bal.kep");
@@ -58,6 +51,8 @@ public:
 
         fh1 = new FerdeHajitas(this, 0,0,0,0, 0, 1, koordinatak);
     }
+
+
 
     int aktualisJatekos()
     {
@@ -68,11 +63,61 @@ public:
     {
         *actualPlayer = *actualPlayer * (-1);
         ferdeHajitas(_ang->getValue(), _vel->getValue(), id);
-        /*if (id == 1)
-        {
-            fh1->draw();
-        }*/
     }
+
+
+    void talalt1()
+    {
+        bool tal=0;
+        for (size_t ii=0; ii < koordinatak.size(); ii++)
+        {
+            int x_ = koordinatak[ii]._ax +90;
+            int y_ = 546-4.59- koordinatak[ii]._ay;
+
+            if(x_ >= 850 && x_ <= 970 && y_ >= 537 && y_ <= 602)
+            {
+                tal= true;
+            }
+        }
+        if(tal)
+        {
+            hp2->setPercent(hp2->getPercent()-25);
+        }
+
+        if(hp2->getPercent() <= 0)
+        {
+            _gameover = true;
+            gyoztes = "1";
+        }
+    }
+
+
+
+    bool talalt2()
+    {
+        bool tal=0;
+        for (size_t ii=0; ii < koordinatak.size(); ii++)
+        {
+            int x_ = 910 - koordinatak[ii]._ax;
+            int y_ = 546- 4.59 - koordinatak[ii]._ay;
+
+            if(x_ >= 30 && x_ <= 150 && y_ >= 537 && y_ <= 602)
+            {
+                tal = true;
+            }
+        }
+        if(tal)
+        {
+            hp1->setPercent(hp1->getPercent()-25);
+        }
+
+        if(hp1->getPercent() <= 0)
+        {
+            _gameover = true;
+            gyoztes = "2";
+        }
+    }
+
 
     void ferdeHajitas(int _ang, int _vel, int id)
     {

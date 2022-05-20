@@ -9,6 +9,7 @@ Application::Application(int width, int height)
 {
     gout.open(width, height);
     actualPlayer = new int(-1);
+    _gameover = false;
 }
 void Application::register_widget(Widget* widget)
 {
@@ -33,92 +34,106 @@ void Application::event_loop() {
     int focus = -1;
     while(gin >> ev && ev.keycode != key_escape)
     {
-        //std::cout << "actualPlayer:" << *actualPlayer << std::endl;      ///deleteme
-        if (ev.type == ev_mouse && ev.button == btn_left)
+        if(!_gameover)
         {
-            for (size_t i=0; i < widgets.size(); i++)
+            //std::cout << "actualPlayer:" << *actualPlayer << std::endl;      ///deleteme
+            if (ev.type == ev_mouse && ev.button == btn_left)
             {
-                if (widgets[i]->is_selected(ev.pos_x, ev.pos_y))
+                for (size_t i=0; i < widgets.size(); i++)
                 {
-                    if(*actualPlayer == -1 && i >= 0 && i <= 4)
+                    if (widgets[i]->is_selected(ev.pos_x, ev.pos_y))
                     {
-                        focus = i;
-                        widgets[i]->setColorSelected();
-                        //std::cout << "focus bent player1-nel: " << focus << std::endl;
-                    }
-                    else if(*actualPlayer == 1 && i >= 5 && i <= 8)
-                    {
-                        focus = i;
-                        widgets[i]->setColorSelected();
-                        //std::cout << "focus bent player2-nel: " << focus << std::endl;
+                        if(*actualPlayer == -1 && i >= 0 && i <= 3)
+                        {
+                            focus = i;
+                            widgets[i]->setColorSelected();
+
+                        }
+                        else if(*actualPlayer == 1 && i >= 4 && i <= 7)
+                        {
+                            focus = i;
+                            widgets[i]->setColorSelected();
+
+                        }
                     }
                 }
             }
-        }
-        /*else if (ev.type == ev_key && ev.keycode == key_enter)
-        {
-            action("mentes");
-        }*/
-
-        if (focus != -1)
-        {
-            widgets[focus]->handle(ev);
-        }
 
 
-        if (ev.type == ev_mouse && ev.button == btn_left)       //hatterre balklikkre a focus visszaall -1 -re
-        {
-            int tmpFocus = -1;
-            for (size_t i=0; i < widgets.size(); i++)
+            if (focus != -1)
             {
-                if (widgets[i]->is_selected(ev.pos_x,ev.pos_y))
+                widgets[focus]->handle(ev);
+            }
+
+
+            if (ev.type == ev_mouse && ev.button == btn_left)       //hatterre balklikkre a focus visszaall -1 -re
+            {
+                int tmpFocus = -1;
+                for (size_t i=0; i < widgets.size(); i++)
                 {
-                    tmpFocus = 1;
+                    if (widgets[i]->is_selected(ev.pos_x,ev.pos_y))
+                    {
+                        tmpFocus = 1;
+                    }
+                }
+
+                if (ev.button == btn_left && tmpFocus == -1)
+                {
+                    focus = -1;
                 }
             }
 
-            if (ev.button == btn_left && tmpFocus == -1)
+
+            for (size_t i=0; i<widgets.size(); i++)             //a nem kijelolt widgetek keretenek a szinet visszarakja basicre
+            {
+                if (i != focus)
+                {
+                    widgets[i]->setColorBasic();
+                }
+            }
+
+            if(focus == 2)
             {
                 focus = -1;
             }
-        }
-
-
-        for (size_t i=0; i<widgets.size(); i++)             //a nem kijelolt widgetek keretenek a szinet visszarakja basicre
-        {
-            if (i != focus)
+            else if(focus == 7)
             {
-                widgets[i]->setColorBasic();
+                focus = -1;
             }
-        }
 
-        if(focus == 2)
-        {
-            focus = -1;
-        }
-        else if(focus == 7)
-        {
-            focus = -1;
-        }
+            draw_background();                                  //kirajzolja a hatteret
 
-        draw_background();                                  //kirajzolja a hatteret
+            for (Widget* w : widgets)                           //kirajzolja a widgeteket
+            {
+                w->draw();
+            }
 
-        for (Widget* w : widgets)                           //kirajzolja a widgeteket
-        {
-            w->draw();
-        }
+            if(*actualPlayer == 1)
+            {
+                gout << move_to(420,30) << color(255,0,0) << box(160,30);
+                gout << move_to(428,50) << color(0,0,255) << text("Player two's turn!");
+            }
+            else if(*actualPlayer == -1)
+            {
+                gout << move_to(420,30) << color(0,0,255) << box(160,30);
+                gout << move_to(428,50) << color(255,0,0) << text("Player one's turn!");
+            }
 
-        if(*actualPlayer == 1)
-        {
-            gout << move_to(420,30) << color(255,0,0) << box(160,30);
-            gout << move_to(428,50) << color(0,0,255) << text("Player two's turn!");
+            gout << refresh;
         }
-        else if(*actualPlayer == -1)
+        else //if(_gameover)
         {
-            gout << move_to(420,30) << color(0,0,255) << box(160,30);
-            gout << move_to(428,50) << color(255,0,0) << text("Player one's turn!");
-        }
+            std::string gmover="Game over!";
+            std::string winner_ = "The winner is: Player ";
+            std::string quit="Press escape to quit";
+            gout << color(255,255,255) << move_to(0,0) << box(999,699) << color(0,0,0)
+                 << move_to(500- gout.twidth(gmover)/2, 100) << text(gmover)
+                 << move_to(500-gout.twidth(winner_)/2, 150) << text(winner_) << text(gyoztes)
+                 << move_to(500-gout.twidth(quit)/2, 200) << text(quit) << refresh;
+            /*if(ev.keycode == key_enter)
+            {
 
-        gout << refresh;
+            }*/
+        }
     }
 }
