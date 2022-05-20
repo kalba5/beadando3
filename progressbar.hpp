@@ -3,14 +3,16 @@
 
 #include "widget.hpp"
 
+
 class ProgressBar : public Widget
 {
-    int _value;
+    int _percent;
+    std::string _text;
 public:
-    ProgressBar(Application* parent, int x, int y, int sx, int sy);
+    ProgressBar(Application* parent, int x, int y, int sx, int sy, std::string txt);
 
-    int getValue();
-    void setValue(int vl);
+    int getPercent();
+    void setPercent(int vl);
     virtual void draw();
     virtual void handle(genv::event ev);
 };

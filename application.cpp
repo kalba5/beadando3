@@ -33,22 +33,24 @@ void Application::event_loop() {
     int focus = -1;
     while(gin >> ev && ev.keycode != key_escape)
     {
-        //std::cout << "actualPlayer" << *actualPlayer << std::endl;      ///delete
+        std::cout << "actualPlayer:" << *actualPlayer << std::endl;      ///deleteme
         if (ev.type == ev_mouse && ev.button == btn_left)
         {
             for (size_t i=0; i < widgets.size(); i++)
             {
                 if (widgets[i]->is_selected(ev.pos_x, ev.pos_y))
                 {
-                    if(*actualPlayer == -1 && i >= 0 && i <= 3)
+                    if(*actualPlayer == -1 && i >= 0 && i <= 4)
                     {
                         focus = i;
                         widgets[i]->setColorSelected();
+                        std::cout << "focus bent player1-nel: " << focus << std::endl;
                     }
-                    else if(*actualPlayer == 1 && i >= 4 && i <= 7)
+                    else if(*actualPlayer == 1 && i >= 5 && i <= 8)
                     {
                         focus = i;
                         widgets[i]->setColorSelected();
+                        std::cout << "focus bent player2-nel: " << focus << std::endl;
                     }
                 }
             }
@@ -88,6 +90,15 @@ void Application::event_loop() {
             {
                 widgets[i]->setColorBasic();
             }
+        }
+
+        if(focus == 2)
+        {
+            focus = -1;
+        }
+        else if(focus == 7)
+        {
+            focus = -1;
         }
 
         draw_background();                                  //kirajzolja a hatteret
